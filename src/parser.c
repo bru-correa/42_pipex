@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:30:49 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/20 20:44:24 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:53:36 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	skip_spaces(char *cmd, int start);
 static char	*get_next_cmd_arg(char *cmd, int *start_index);
 static void	check_for_single_quote(char c, int *single_quote_mode);
-// static int	count_cmd_args(char *cmd);
+static int	count_cmd_args(char *cmd);
 
 char	**parse_cmd(char *cmd)
 {
@@ -41,7 +41,7 @@ char	**parse_cmd(char *cmd)
 	return (cmd_args);
 }
 
-int	count_cmd_args(char *cmd)
+static int	count_cmd_args(char *cmd)
 {
 	int	counter;
 	int	i;
@@ -72,32 +72,6 @@ static void	check_for_single_quote(char c, int *single_quote_mode)
 	else if (c == '\'' && *single_quote_mode == TRUE)
 		*single_quote_mode = FALSE;
 }
-
-// static char	*get_next_cmd_arg(char *cmd)
-// {
-// 	static unsigned int	start_index = 0;
-// 	unsigned int		current_index;
-// 	char				*cmd_arg;
-// 	int					quote_mode;
-
-// 	start_index = skip_spaces(cmd, start_index);
-// 	current_index = start_index;
-// 	quote_mode = FALSE;
-// 	while (cmd[current_index] != '\0')
-// 	{
-// 		check_for_single_quote(cmd[current_index], &quote_mode);
-// 		if (cmd[current_index] == ' ' && quote_mode == FALSE)
-// 		{
-// 			cmd_arg = ft_substr(cmd, start_index, current_index - start_index);
-// 			start_index = current_index;
-// 			return (cmd_arg);
-// 		}
-// 		current_index++;
-// 	}
-// 	cmd_arg = ft_substr(cmd, start_index, current_index - start_index);
-// 	start_index = 0;
-// 	return (cmd_arg);
-// }
 
 static char	*get_next_cmd_arg(char *cmd, int *start_index)
 {

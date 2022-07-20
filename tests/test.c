@@ -6,13 +6,12 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:28:21 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/20 19:59:19 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:56:35 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	print_args_count(char *cmd);
 static void	test_cmd(char *cmd);
 static void	print_args(char *cmd);
 
@@ -32,17 +31,8 @@ int	main(void)
 static	void	test_cmd(char *cmd)
 {
 	ft_printf("Command: %s\n", cmd);
-	print_args_count(cmd);
 	print_args(cmd);
 	ft_printf("\n");
-}
-
-static	void	print_args_count(char *cmd)
-{
-	int		args_count;
-
-	args_count = count_cmd_args(cmd);
-	ft_printf("Total command args: %d\n", args_count);
 }
 
 static void	print_args(char *cmd)

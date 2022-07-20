@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/04 19:45:25 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:51:41 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	exec_cmd(char *cmd, char **envp)
 	char	**cmd_args;
 	char	*cmd_path;
 
-	cmd_args = ft_split(cmd, ' ');
+	cmd_args = parse_cmd(cmd);
 	if (cmd_args == NULL)
 		exit_error("ERROR: Could not get cmd args\n");
 	cmd_path = get_cmd_path(cmd_args[0], envp);
