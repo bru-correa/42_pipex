@@ -20,7 +20,7 @@ LIB_DIR				= ./lib
 
 LIBFT_DIR			= $(LIB_DIR)/libft
 
-FILENAMES			= run_cmd get_path free_path
+FILENAMES			= exit_error exec get_cmd_path read_input parser
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(NAME).c
@@ -74,7 +74,7 @@ libft:
 					@$(MAKE) -C $(LIBFT_DIR)
 
 run:				all
-					@./$(NAME) ls -l -a
+					@./$(NAME) infile "grep a" "grep hobbit" "wc -c" outfile
 
 runv:				all
 					$(VALGRIND) ./$(NAME) ls -l -a
@@ -102,15 +102,21 @@ compile_message:
 					@echo $(COMPILING_MSG)
 
 # TESTS [REMOVE LATER]
-tests:				required $(TESTS_OBJ_FILES)
-					@$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(TESTS_OBJ_FILES) \
-						$(CFLAGS) $(TESTS_CFLAGS) $(CFLAGS_LIB) -o $(TESTS)
+# tests:				required $(TESTS_OBJ_FILES)
+# 					@$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(TESTS_OBJ_FILES) \
+# 						$(CFLAGS) $(TESTS_CFLAGS) $(CFLAGS_LIB) -o $(TESTS)
 
-$(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
-					@$(CC) -c -g $< $(CFLAGS) $(TESTS_CFLAGS) -o $@
+# $(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
+# 					@$(CC) -c -g $< $(CFLAGS) $(TESTS_CFLAGS) -o $@
+
+# runt:				tests
+# 					$(VALGRIND) $(TESTS)
+tests:				all
+					@ $(CC) -g tests/test.c $(OBJ_FILES) $(CFLAGS) \
+						$(CFLAGS_LIB) -o tests/test
 
 runt:				tests
-					$(VALGRIND) $(TESTS)
+					@ tests/test
 
-.PHONY:	all libft run clean fclean re debug test runt runv run_bonus run_bonusv
+.PHONY:	all libft run clean fclean re debug tests runt runv run_bonus run_bonusv
 

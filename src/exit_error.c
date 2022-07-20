@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_path.c                                        :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 17:40:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/06/20 13:35:09 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/06/29 18:05:46 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/06/29 18:24:05 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_path(char **path)
+void	exit_error(char *msg)
 {
-	int	i;
-
-	i = 0;
-	while (path[i] != NULL)
-	{
-		free(path[i]);
-		i++;
-	}
-	free(path);
+	perror(msg);
+	exit(EXIT_FAILURE);
 }

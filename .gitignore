@@ -4,4 +4,6 @@ outfile
 pipex
 obj
 .vscode
+.ccls-cache
+.ccls
 LICENSE

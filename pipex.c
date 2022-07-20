@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:37:19 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/06/20 13:36:03 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:46:49 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,15 @@
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char		**path;
-	__pid_t		pid1;
-	t_command	cmd;
+	int	files[2];
+	int	current_arg;
 
-	if (argc == 1)
-		return (1);
-	path = get_path(envp);
-	if (path == NULL)
+	current_arg = read_input(argc, argv, files);
+	while (current_arg < argc - 2)
 	{
-		ft_printf("ERROR: Path Not Found!\n");
-		return (1);
+		exec_redir(argv[current_arg], envp);
+		current_arg++;
 	}
-	pid1 = fork();
-	if (pid1 == 0)
-	{
-		cmd.name = argv[1];
-		cmd.flags = &argv[2];
-		run_cmd(cmd, path, envp);
-		free_path(path);
-	}
-	if (pid1 != 0)
-	{
-		free_path(path);
-	}
+	exec_last_cmd(argv[current_arg], envp, files[OUTPUT]);
 	return (0);
 }
