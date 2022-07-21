@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:40:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/20 20:50:47 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/21 16:08:46 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	exec_cmd(char *cmd, char **envp);
 char	*get_cmd_path(char *cmd, char **envp);
 int		read_input(int argc, char **argv, int *files);
 char	**parse_cmd(char *cmd);
+void	handle_heredoc(char *limiter);
 
 #endif

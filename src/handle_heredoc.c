@@ -1,77 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 16:28:21 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:24:41 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/07/21 14:07:56 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/07/21 19:19:53 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-// static void	test_cmd(char *cmd);
-// static void	print_args(char *cmd);
-static void	test_limiter(char *limiter);
+static void	parse_heredoc(char *limiter, int *pipe_fd);
 
-int	main(void)
+void	handle_heredoc(char *limiter)
 {
-	test_limiter("END");
-	return (0);
+	int	pipe_fd[2];
+	int	pid;
+
+	if (limiter == NULL)
+		exit_error("Error: Invalid Delimiter\n");
+	if (pipe(pipe_fd) == -1)
+		exit_error("ERROR: Could not open pipe\n");
+	pid = fork();
+	if (pid < 0)
+		exit_error("ERROR: Failed to handle fork\n");
+	if (pid > CHILD_ID)
+	{
+		close(WRITE_END);
+		dup2(pipe_fd[READ_END], STDIN_FILENO);
+		close(pipe_fd[READ_END]);
+		wait(NULL);
+		return ;
+	}
+	parse_heredoc(limiter, pipe_fd);
 }
 
-static void	test_limiter(char *limiter)
+// ? Maybe add an extra get_next_line in case of memory leaking
+static void	parse_heredoc(char *limiter, int *pipe_fd)
 {
 	char	*line;
 	char	*limiter_newline;
 	int		limiter_length;
 
+	close(pipe_fd[READ_END]);
 	line = ft_get_next_line(STDIN_FILENO);
 	limiter_newline = ft_strjoin(limiter, "\n");
 	limiter_length = ft_strlen(limiter_newline);
-	ft_printf("Limiter: %s\n", limiter_newline);
 	while (line != NULL)
 	{
-		ft_printf("%d\n",
-			ft_strncmp(line, limiter_newline, limiter_length + 1));
+		ft_printf("> ");
 		if (ft_strncmp(line, limiter_newline, limiter_length + 1) == 0)
 		{
 			free(line);
 			free(limiter_newline);
-			ft_printf("SUCCESS!\n");
+			close(pipe_fd[WRITE_END]);
 			exit(EXIT_SUCCESS);
 		}
+		ft_putstr_fd(line, pipe_fd[WRITE_END]);
 		free(line);
 		line = ft_get_next_line(STDIN_FILENO);
 	}
-	free(limiter_newline);
 	free(line);
+	free(limiter_newline);
+	close(WRITE_END);
 }
-
-// static	void	test_cmd(char *cmd)
-// {
-// 	ft_printf("Command: %s\n", cmd);
-// 	print_args(cmd);
-// 	ft_printf("\n");
-// }
-
-// static void	print_args(char *cmd)
-// {
-// 	char	**cmd_args;
-
-// 	cmd_args = parse_cmd(cmd);
-// 	if (cmd_args == NULL)
-// 	{
-// 		ft_printf("NULL\n");
-// 		return ;
-// 	}
-// 	ft_printf("| ");
-// 	while (*cmd_args != NULL)
-// 	{
-// 		ft_printf("%s | ", *cmd_args);
-// 		cmd_args++;
-// 	}
-// 	ft_printf("\n");
-// }

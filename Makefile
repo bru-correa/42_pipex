@@ -21,6 +21,7 @@ LIB_DIR				= ./lib
 LIBFT_DIR			= $(LIB_DIR)/libft
 
 FILENAMES			= exit_error exec get_cmd_path read_input parser
+FILENAMES			+= handle_heredoc
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(NAME).c
@@ -116,7 +117,10 @@ tests:				all
 						$(CFLAGS_LIB) -o tests/test
 
 runt:				tests
-					@ tests/test
+					@ tests/test.sh
+
+gambiarra:			tests
+					@ ./tests/test
 
 .PHONY:	all libft run clean fclean re debug tests runt runv run_bonus run_bonusv
 
