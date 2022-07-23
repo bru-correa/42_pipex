@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:07:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/21 19:19:53 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/22 03:24:54 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	handle_heredoc(char *limiter)
 	int	pid;
 
 	if (limiter == NULL)
-		exit_error("Error: Invalid Delimiter\n");
+		exit_perror("Error: Invalid Delimiter\n", 1);
 	if (pipe(pipe_fd) == -1)
-		exit_error("ERROR: Could not open pipe\n");
+		exit_perror("ERROR: Could not open pipe\n", 1);
 	pid = fork();
 	if (pid < 0)
-		exit_error("ERROR: Failed to handle fork\n");
+		exit_perror("ERROR: Failed to handle fork\n", 1);
 	if (pid > CHILD_ID)
 	{
 		close(WRITE_END);

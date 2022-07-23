@@ -78,7 +78,7 @@ run:				all
 					@./$(NAME) infile "grep a" "grep hobbit" "wc -c" outfile
 
 runv:				all
-					$(VALGRIND) ./$(NAME) ls -l -a
+					$(VALGRIND) ./$(NAME) infile "catzados" "grep a" outfile
 
 run_bonus:			bonus
 					@./$(NAME)_bonus

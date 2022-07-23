@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:40:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:08:46 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/22 16:57:30 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <errno.h>
 
 /********** MACROS ***********/
 # define CHILD_ID 0
@@ -29,7 +30,8 @@
 # define WRITE_END 1
 
 /********** PROTOTYPES **********/
-void	exit_error(char *msg);
+void	exit_perror(char *msg, int error_code);
+void	exit_invalid_cmd(char **cmd_args);
 void	exec_redir(char *cmd, char **envp);
 void	exec_last_cmd(char *cmd, char **envp, int file_out);
 void	exec_cmd(char *cmd, char **envp);

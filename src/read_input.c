@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:20:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/21 16:10:54 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:14:47 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	read_input(int argc, char **argv, int *files)
 		handle_heredoc(argv[2]);
 		files[OUTPUT] = open(argv[argc - 1], O_RDWR | O_APPEND);
 		if (files[OUTPUT] == -1)
-			exit_error("ERROR: Could not open output file\n");
+			exit_perror(argv[argc - 1], 1);
 		return (3);
 	}
 	else if (argc >= 5)
@@ -32,8 +32,8 @@ int	read_input(int argc, char **argv, int *files)
 		close(files[INPUT]);
 		return (2);
 	}
-	exit_error("ERROR: Invalid arguments\n");
-	return (1);
+	exit_perror("ERROR: Invalid arguments\n", 1);
+	return (-1);
 }
 
 /*
@@ -44,8 +44,8 @@ static void	open_files(int argc, char **argv, int *files)
 {
 	files[INPUT] = open(argv[1], O_RDONLY);
 	if (files[INPUT] == -1)
-		exit_error("ERROR: Could not open input file\n");
-	files[OUTPUT] = open(argv[argc - 1], O_RDWR);
+		exit_perror(argv[1], 1);
+	files[OUTPUT] = open(argv[argc - 1], O_RDWR | O_CREAT);
 	if (files[OUTPUT] == -1)
-		exit_error("ERROR: Could not open output file\n");
+		exit_perror(argv[argc - 1], 1);
 }

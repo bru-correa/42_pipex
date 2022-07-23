@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:30:49 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/20 20:53:36 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:13:07 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**parse_cmd(char *cmd)
 	if (cmd == NULL)
 		return (NULL);
 	cmd_args_count = count_cmd_args(cmd);
-	cmd_args = malloc(sizeof(char *) * cmd_args_count + 1);
+	cmd_args = malloc(sizeof(char *) * (cmd_args_count + 1));
 	if (cmd_args == NULL)
 		return (NULL);
 	current_arg = 0;

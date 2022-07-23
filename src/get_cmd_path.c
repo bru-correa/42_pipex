@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 19:17:08 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/06 14:41:07 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/22 03:33:10 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	free_path(char **path);
 static char	**get_path(char **envp);
 static char	*get_path_line(char **envp);
 
-//TODO: Change cmd name
 char	*get_cmd_path(char *cmd, char **envp)
 {
 	char	*cmd_path;
@@ -29,7 +28,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 	cmd_path = add_path_prefix(cmd, path);
 	free_path(path);
 	if (cmd_path == NULL)
-		exit_error("ERROR: Command not found\n");
+		return (NULL);
 	return (cmd_path);
 }
 
@@ -73,7 +72,7 @@ static char	**get_path(char **envp)
 
 	path_str = get_path_line(envp);
 	if (path_str == NULL)
-		exit_error("ERROR: Path not found!\n");
+		exit_perror("ERROR: Path not found!\n", 1);
 	path = ft_split(path_str, ':');
 	free(path_str);
 	return (path);
