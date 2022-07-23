@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 19:17:08 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/22 03:33:10 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:21:06 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	free_path(char **path)
 	int	i;
 
 	i = 0;
-	while (path[i] == NULL)
+	while (path[i] != NULL)
 	{
 		free(path[i]);
 		i++;
