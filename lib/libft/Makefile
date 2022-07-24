@@ -6,10 +6,13 @@
 #    By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 17:50:16 by bcorrea-          #+#    #+#              #
-#    Updated: 2022/05/31 03:52:26 by bcorrea-         ###   ########.fr        #
+#    Updated: 2022/07/24 15:06:16 by bcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+ifndef VERBOSE
+.SILENT:
+endif
 NAME				= libft.a
 CFLAGS				= -Wall -Werror -Wextra $(INCLUDE)
 CC					= gcc
@@ -41,16 +44,16 @@ OBJ_FILES			= $(patsubst %, %.o, $(FILENAMES))
 all:				$(NAME)
 
 $(NAME):			$(OBJ_FILES)
-					@ar -rcs $@ $(OBJ_FILES)
+					ar -rcs $@ $(OBJ_FILES)
 
 %.o:				%.c
-					@$(CC) -c $< -o $@ $(CFLAGS)
+					$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
-					@rm -f $(OBJ_FILES)
+					rm -f $(OBJ_FILES)
 
 fclean:				clean
-					@rm -f $(NAME)
+					rm -f $(NAME)
 
 re:					fclean all
 

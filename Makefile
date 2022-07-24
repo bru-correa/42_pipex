@@ -1,3 +1,7 @@
+ifndef VERBOSE
+.SILENT:
+endif
+
 RED					= \033[1;31m
 YELLOW				= \033[1;33m
 GREEN				= \033[1;32m
@@ -34,95 +38,51 @@ OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES_BONUS))
 MAIN_BONUS			= $(NAME)_bonus.c
 SRC_BONUS_DIR		= ./src_bonus
 
-# TESTS
-TESTS_DIR			= ./tests
-TESTS_CFLAGS		= -I $(TESTS_DIR)
-TESTS_MAIN			= $(TESTS_DIR)/tests.c
-TESTS_FILENAMES		= test_maps
-TESTS_OBJ_FILES		= $(patsubst %, $(TESTS_DIR)/%.o, $(TESTS_FILENAMES))
-TESTS				= $(TESTS_DIR)/tests
-VALGRIND			= valgrind --leak-check=full --show-leak-kinds=all
-VALGRIND			+= --track-origins=yes --tool=memcheck --quiet
-
 all:				$(NAME)
 
 bonus:				required_bonus
-					@$(CC) -g $(MAIN_BONUS) $(OBJ_BONUS_FILES) $(CFLAGS) \
+					$(CC) -g $(MAIN_BONUS) $(OBJ_BONUS_FILES) $(CFLAGS) \
 						$(CFLAGS_LIB) -o $(NAME)_bonus
+					echo $(DONE_MSG)
 
 required:			compile_message $(OBJ_DIR) $(OBJ_FILES) libft
 
 required_bonus:		compile_message $(OBJ_DIR) $(OBJ_BONUS_FILES) libft
 
-debug:				required
-					@$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
-						-o debug
-
 $(NAME):			required
-					@$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
+					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
 						-o $(NAME)
-					@echo $(DONE_MSG)
+					echo $(DONE_MSG)
 
 $(OBJ_DIR):
-					@mkdir -p $@
+					mkdir -p $@
 
 # MANDATORY
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
-					@$(CC) -c -g $< $(CFLAGS) -o $@
+					$(CC) -c -g $< $(CFLAGS) -o $@
 
 # BONUS
 $(OBJ_DIR)/%.o:		$(SRC_BONUS_DIR)/%.c
-					@$(CC) -c -g $< $(CFLAGS) -o $@
+					$(CC) -c -g $< $(CFLAGS) -o $@
 
 libft:
-					@$(MAKE) -C $(LIBFT_DIR)
-
-run:				all
-					@./$(NAME) infile "grep a" "grep hobbit" "wc -c" outfile
-
-runv:				all
-					$(VALGRIND) ./$(NAME) infile "catzados" "grep a" outfile
-
-run_bonus:			bonus
-					@./$(NAME)_bonus here_doc END "grep a" "grep hobbit" "grep lots" "grep cellar" outfile
-
-run_bonusv:			bonus
-					$(VALGRIND) ./$(NAME)_bonus here_doc END "grep a" "grep hobbit" "grep lots" "grep cellar" outfile
+					$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-					@echo $(CLEANING_MSG)
-					@$(MAKE) -C $(LIBFT_DIR) clean
-					@rm -rf $(OBJ_DIR)
+					echo $(CLEANING_MSG)
+					$(MAKE) -C $(LIBFT_DIR) clean
+					rm -rf $(OBJ_DIR)
 
 fclean:				clean
-					@$(MAKE) -C $(LIBFT_DIR) fclean
-					@rm -f $(NAME)
-					@rm -f $(NAME)_bonus
+					$(MAKE) -C $(LIBFT_DIR) fclean
+					rm -f $(NAME)
+					rm -f $(NAME)_bonus
 
 re:					fclean all
 
+re_bonus:			fclean bonus
+
 compile_message:
-					@echo $(COMPILING_MSG)
+					echo $(COMPILING_MSG)
 
-# TESTS [REMOVE LATER]
-# tests:				required $(TESTS_OBJ_FILES)
-# 					@$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(TESTS_OBJ_FILES) \
-# 						$(CFLAGS) $(TESTS_CFLAGS) $(CFLAGS_LIB) -o $(TESTS)
-
-# $(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
-# 					@$(CC) -c -g $< $(CFLAGS) $(TESTS_CFLAGS) -o $@
-
-# runt:				tests
-# 					$(VALGRIND) $(TESTS)
-tests:				all
-					@ $(CC) -g tests/test.c $(OBJ_FILES) $(CFLAGS) \
-						$(CFLAGS_LIB) -o tests/test
-
-runt:				tests
-					@ tests/test.sh
-
-gambiarra:			tests
-					@ ./tests/test
-
-.PHONY:	all libft run clean fclean re debug tests runt runv run_bonus run_bonusv
-
+.PHONY:	all libft run clean fclean re re_bonus
