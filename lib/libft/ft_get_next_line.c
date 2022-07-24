@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/27 14:10:41 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 07:35:36 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ static char	*get_remainder(char *text)
 	remainder++;
 	text = remainder;
 	len = ft_strlen(remainder);
+	if (len == 0)
+		return (NULL);
 	remainder = malloc((len + 1) * sizeof(char));
 	i = 0;
 	while (i < len)

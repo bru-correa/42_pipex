@@ -14,3 +14,4 @@ pipex-tester2
 pipex-tester3
 pipex-tester4
 test.sh
+*.a

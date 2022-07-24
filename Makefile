@@ -84,10 +84,10 @@ runv:				all
 					$(VALGRIND) ./$(NAME) infile "catzados" "grep a" outfile
 
 run_bonus:			bonus
-					@./$(NAME)_bonus infile "grep a" "grep hobbit" "grep the" outfile
+					@./$(NAME)_bonus here_doc END "grep a" "grep hobbit" "grep lots" "grep cellar" outfile
 
 run_bonusv:			bonus
-					$(VALGRIND) ./$(NAME)_bonus
+					$(VALGRIND) ./$(NAME)_bonus here_doc END "grep a" "grep hobbit" "grep lots" "grep cellar" outfile
 
 clean:
 					@echo $(CLEANING_MSG)

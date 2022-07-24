@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 19:18:57 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/04 15:15:32 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 07:31:46 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 /* ***** MACROS ***** */
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # ifndef OPEN_MAX

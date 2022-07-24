@@ -6,13 +6,12 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:37:19 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 06:50:22 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 06:55:28 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-// TODO Refactor to check_input return if it has here_doc
 static int	check_input(int argc, char **argv, char **envp, int *have_heredoc);
 
 int	main(int argc, char *argv[], char *envp[])
@@ -28,10 +27,10 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 	if (have_heredoc == TRUE)
 		exec_last_cmd(argv[current_arg], envp, argv[argc - 1],
-			O_RDWR | O_APPEND);
+			O_WRONLY | O_APPEND | O_CREAT);
 	else
 		exec_last_cmd(argv[current_arg], envp, argv[argc - 1],
-			O_RDWR | O_TRUNC);
+			O_WRONLY | O_TRUNC | O_CREAT);
 	return (0);
 }
 
