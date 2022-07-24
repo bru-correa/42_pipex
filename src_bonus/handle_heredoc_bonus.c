@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:07:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/22 03:24:54 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:50 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	parse_heredoc(char *limiter, int *pipe_fd);
 

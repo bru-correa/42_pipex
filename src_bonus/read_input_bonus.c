@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:20:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/23 23:48:24 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:25:07 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 int	read_input(int argc)
 {

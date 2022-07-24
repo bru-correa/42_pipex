@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 19:17:08 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/23 20:21:06 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:43 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static char	*add_path_prefix(char *cmd, char **path);
 static void	free_path(char **path);

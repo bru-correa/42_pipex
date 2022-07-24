@@ -28,7 +28,7 @@ MAIN				= $(NAME).c
 
 # BONUS
 FILENAMES_BONUS		= $(addsuffix _bonus, $(FILENAMES))
-FILENAMES_BONUS		+= handle_heredoc handle_input
+FILENAMES_BONUS		+= handle_heredoc_bonus read_input_bonus
 
 OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES_BONUS))
 MAIN_BONUS			= $(NAME)_bonus.c
@@ -66,9 +66,11 @@ $(NAME):			required
 $(OBJ_DIR):
 					@mkdir -p $@
 
+# MANDATORY
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
 					@$(CC) -c -g $< $(CFLAGS) -o $@
 
+# BONUS
 $(OBJ_DIR)/%.o:		$(SRC_BONUS_DIR)/%.c
 					@$(CC) -c -g $< $(CFLAGS) -o $@
 
@@ -91,7 +93,6 @@ clean:
 					@echo $(CLEANING_MSG)
 					@$(MAKE) -C $(LIBFT_DIR) clean
 					@rm -rf $(OBJ_DIR)
-					@rm -rf $(BIN_DIR)
 
 fclean:				clean
 					@$(MAKE) -C $(LIBFT_DIR) fclean

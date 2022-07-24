@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 02:48:46 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:27 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	exec_first_cmd(char *cmd, char **envp, char *filename)
 {

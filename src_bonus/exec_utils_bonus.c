@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:56:32 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 02:37:19 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:19 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	redir_pipe_to_stdout(int *pipe_fd)
 {

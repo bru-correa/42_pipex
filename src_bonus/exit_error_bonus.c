@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:05:46 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/23 20:03:52 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:35 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	free_cmd_args(char **cmd_args);
 

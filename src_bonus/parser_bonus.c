@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:30:49 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 01:54:09 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:25:02 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static char	*get_next_cmd_arg(char *cmd, int *start_index);
 static char	*handle_single_quote(char *cmd, int *start_index);

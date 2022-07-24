@@ -3,6 +3,7 @@ debug
 infile
 outfile
 pipex
+pipex_bonus
 obj
 .vscode
 .ccls-cache

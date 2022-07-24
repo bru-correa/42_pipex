@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:34:58 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 01:43:39 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:24:57 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	check_for_single_quote(char c, int *single_quote_mode);
 
