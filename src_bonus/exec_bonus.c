@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 03:24:27 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 04:50:57 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	exec_redir(char *cmd, char **envp)
 	return ;
 }
 
-void	exec_last_cmd(char *cmd, char **envp, char *filename)
+void	exec_last_cmd(char *cmd, char **envp, char *filename, int o_flag)
 {
-	redir_file_to_fd(filename, O_WRONLY | O_TRUNC | O_CREAT, STDOUT_FILENO);
+	redir_file_to_fd(filename, o_flag, STDOUT_FILENO);
 	exec_cmd(cmd, envp);
 }
 
