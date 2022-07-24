@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/23 22:47:07 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 00:09:22 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	exec_first_cmd(char *cmd, char **envp, char *filename)
 		close(pipe_fd[WRITE_END]);
 		dup2(pipe_fd[READ_END], STDIN_FILENO);
 		close(pipe_fd[READ_END]);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, NULL, WNOHANG);
 		return ;
 	}
 	close(pipe_fd[READ_END]);
@@ -57,7 +57,7 @@ void	exec_redir(char *cmd, char **envp)
 		close(pipe_fd[WRITE_END]);
 		dup2(pipe_fd[READ_END], STDIN_FILENO);
 		close(pipe_fd[READ_END]);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, NULL, WNOHANG);
 		return ;
 	}
 	close(pipe_fd[READ_END]);
