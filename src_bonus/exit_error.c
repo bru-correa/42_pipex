@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 16:37:19 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 03:14:05 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/06/29 18:05:46 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/07/23 20:03:52 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	check_args(int argc);
+static void	free_cmd_args(char **cmd_args);
 
-int	main(int argc, char *argv[], char *envp[])
+void	exit_perror(char *msg, int error_code)
 {
-	check_args(argc);
-	exec_first_cmd(argv[FIRST_CMD], envp, argv[INFILE]);
-	exec_last_cmd(argv[LAST_CMD], envp, argv[OUTFILE]);
-	return (0);
+	perror(msg);
+	exit(error_code);
 }
 
-static void	check_args(int argc)
+void	exit_invalid_cmd(char **cmd_args)
 {
-	if (argc != 5)
+	ft_putstr_fd(cmd_args[0], 2);
+	ft_putstr_fd(": command not found\n", 2);
+	free_cmd_args(cmd_args);
+	exit(127);
+}
+
+static void	free_cmd_args(char **cmd_args)
+{
+	int	i;
+
+	i = 0;
+	while (cmd_args[i] != NULL)
 	{
-		ft_printf("ERROR: Invalid arguments\n");
-		exit(EXIT_FAILURE);
+		free(cmd_args[i]);
+		i++;
 	}
+	free(cmd_args);
 }

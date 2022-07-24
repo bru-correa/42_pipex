@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 03:18:09 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:48:46 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,22 @@ void	exec_first_cmd(char *cmd, char **envp, char *filename)
 	if (pid == CHILD_ID)
 	{
 		redir_file_to_fd(filename, O_RDONLY, STDIN_FILENO);
+		redir_pipe_to_stdout(pipe_fd);
+		exec_cmd(cmd, envp);
+	}
+	redir_pipe_to_stdin(pipe_fd);
+	waitpid(pid, NULL, WNOHANG);
+	return ;
+}
+
+void	exec_redir(char *cmd, char **envp)
+{
+	pid_t	pid;
+	int		pipe_fd[2];
+
+	create_pipe_and_fork(pipe_fd, &pid);
+	if (pid == CHILD_ID)
+	{
 		redir_pipe_to_stdout(pipe_fd);
 		exec_cmd(cmd, envp);
 	}

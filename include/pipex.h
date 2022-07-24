@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:40:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 02:55:43 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 03:18:14 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	exit_perror(char *msg, int error_code);
 void	exit_invalid_cmd(char **cmd_args);
 void	exec_first_cmd(char *cmd, char **envp, char *filename);
 void	exec_last_cmd(char *cmd, char **envp, char *filename);
-void	exec_redir(char *cmd, char **envp);
 void	exec_cmd(char *cmd, char **envp);
 char	*get_cmd_path(char *cmd, char **envp);
 int		skip_spaces(char *cmd, int start);
