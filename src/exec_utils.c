@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 01:56:32 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 03:23:39 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 13:40:38 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	redir_file_to_fd(char *filename, int o_flag, int fd)
 {
 	int	file;
 
-	file = open(filename, o_flag);
+	file = open(filename, o_flag, 0644);
 	if (file == ERROR)
 		exit_perror(filename, 1);
 	dup2(file, fd);
