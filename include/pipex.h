@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:40:07 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 01:44:22 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/24 02:37:26 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define OUTPUT 1
 # define READ_END 0
 # define WRITE_END 1
+# define ERROR -1
 
 /********** PROTOTYPES **********/
 void	exit_perror(char *msg, int error_code);
@@ -41,6 +42,9 @@ int		read_input(int argc);
 int		skip_spaces(char *cmd, int start);
 char	**parse_cmd(char *cmd);
 int		count_cmd_args(char *cmd);
-void	handle_heredoc(char *limiter);
+void	redir_pipe_to_stdout(int *pipe_fd);
+void	redir_pipe_to_stdin(int *pipe_fd);
+void	redir_file_to_fd(char *filename, int o_flag, int fd);
+void	create_pipe_and_fork(int *pipe_fd, pid_t *pid);
 
 #endif
