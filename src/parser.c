@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:30:49 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/23 20:13:07 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/07/23 23:28:45 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,31 @@ static void	check_for_single_quote(char c, int *single_quote_mode)
 
 static char	*get_next_cmd_arg(char *cmd, int *start_index)
 {
-	unsigned int		i;
-	char				*cmd_arg;
-	int					quote_mode;
+	unsigned int	i;
+	char			*cmd_arg;
+	int				quote_mode;
 
 	*start_index = skip_spaces(cmd, *start_index);
 	i = *start_index;
 	quote_mode = FALSE;
 	while (cmd[i] != '\0')
 	{
-		check_for_single_quote(cmd[i], &quote_mode);
-		if (cmd[i] == ' ' && quote_mode == FALSE)
+		if (cmd[i] == '\'')
+		{
+			if (quote_mode == FALSE)
+			{
+				*start_index = i + 1;
+				i++;
+				quote_mode = TRUE;
+			}
+			else
+			{
+				cmd_arg = ft_substr(cmd, *start_index, i - *start_index);
+				*start_index = i + 1;
+				return (cmd_arg);
+			}
+		}
+		else if (cmd[i] == ' ' && quote_mode == FALSE)
 		{
 			cmd_arg = ft_substr(cmd, *start_index, i - *start_index);
 			*start_index = i;
