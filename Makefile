@@ -21,13 +21,14 @@ LIB_DIR				= ./lib
 LIBFT_DIR			= $(LIB_DIR)/libft
 
 FILENAMES			= exit_error exec get_cmd_path read_input parser
-FILENAMES			+= handle_heredoc
+FILENAMES			+= parser_utils
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(NAME).c
 
 # BONUS
 FILENAMES_BONUS		= $(addsuffix _bonus, $(FILENAMES))
+FILENAMES_BONUS		+= handle_heredoc.c
 
 OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES_BONUS))
 MAIN_BONUS			= $(NAME)_bonus.c
