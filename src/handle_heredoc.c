@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_heredoc_bonus.c                             :+:      :+:    :+:   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:07:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 07:18:08 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:43:07 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "pipex.h"
 
 static void	parse_heredoc(char *limiter, int *pipe_fd);
 
@@ -31,7 +31,6 @@ void	handle_heredoc(char *limiter)
 	waitpid(pid, NULL, 0);
 }
 
-// ? Maybe add an extra get_next_line in case of memory leaking
 static void	parse_heredoc(char *limiter, int *pipe_fd)
 {
 	char	*line;

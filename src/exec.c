@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:03:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/07/24 03:23:44 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:42:31 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,25 @@ void	exec_first_cmd(char *cmd, char **envp, char *filename)
 	return ;
 }
 
-void	exec_last_cmd(char *cmd, char **envp, char *filename)
+void	exec_redir(char *cmd, char **envp)
 {
-	redir_file_to_fd(filename, O_WRONLY | O_TRUNC | O_CREAT, STDOUT_FILENO);
+	pid_t	pid;
+	int		pipe_fd[2];
+
+	create_pipe_and_fork(pipe_fd, &pid);
+	if (pid == CHILD_ID)
+	{
+		redir_pipe_to_stdout(pipe_fd);
+		exec_cmd(cmd, envp);
+	}
+	redir_pipe_to_stdin(pipe_fd);
+	waitpid(pid, NULL, WNOHANG);
+	return ;
+}
+
+void	exec_last_cmd(char *cmd, char **envp, char *filename, int o_flag)
+{
+	redir_file_to_fd(filename, o_flag, STDOUT_FILENO);
 	exec_cmd(cmd, envp);
 }
 

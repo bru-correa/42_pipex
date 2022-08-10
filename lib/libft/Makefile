@@ -6,13 +6,14 @@
 #    By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/25 17:50:16 by bcorrea-          #+#    #+#              #
-#    Updated: 2022/07/24 15:06:16 by bcorrea-         ###   ########.fr        #
+#    Updated: 2022/08/09 22:49:36 by bcorrea-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifndef VERBOSE
 .SILENT:
 endif
+
 NAME				= libft.a
 CFLAGS				= -Wall -Werror -Wextra $(INCLUDE)
 CC					= gcc
